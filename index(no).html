@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilos.css" title="Mis cosas">
+    <title>Script Administrador</title>
+    <script>
+        // Función para alternar la visibilidad del contenido y cambiar el texto del botón
+        function toggleDiv(button, divId, originalText) {
+            var div = document.getElementById(divId);
+            var allDivs = button.parentElement.parentElement.querySelectorAll(".contenido");
+
+            // Pliega todos los demás contenidos dentro del mismo grupo
+            allDivs.forEach(function(otherDiv) {
+                if (otherDiv.id !== divId) {
+                    otherDiv.style.display = "none";
+                }
+            });
+
+            // Alterna el estado del contenido clicado
+            if (div.style.display === "none" || div.style.display === "") {
+                div.style.display = "block";
+                button.textContent = "Ocultar " + originalText;
+            } else {
+                div.style.display = "none";
+                button.textContent = originalText;
+            }
+        }
+
+        // Función para ocultar todo el contenido cuando se envía el formulario
+        function hideAllDivs() {
+            var divs = document.querySelectorAll("div");
+            divs.forEach(function(div) {
+                div.style.display = "none";
+            });
+
+            // Restaurar los nombres originales de los botones
+            var buttons = document.querySelectorAll("button[data-original-text]");
+            buttons.forEach(function(button) {
+                button.textContent = button.getAttribute("data-original-text");
+            });
+        }
+    </script>
+    <style>
+        /* Ocultar contenido por defecto */
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function toggleVisibility(button, divId) {
+            const div = document.getElementById(divId);
+            if (div.style.display === "none" || div.classList.contains("hidden")) {
+                div.style.display = "block";
+                div.classList.remove("hidden");
+                button.textContent = "Ocultar " + button.getAttribute('data-original-text');
+            } else {
+                div.style.display = "none";
+                div.classList.add("hidden");
+                button.textContent = button.getAttribute('data-original-text');
+            }
+        }
+    </script>
+    
+        
+</head>
+<body>
+    <header>
+        <h3>Herramienta de administración</h3>
+    </header>
+    <nav></nav>
+    <main>
+         <!--Tipos de procesos-->
+         
+         <h3>Tipos de procesos</h3>
+        <div id="tipos">
+            <form id="formProcesos" action="#" method="get" onsubmit="hideAllDivs()">
+                <ol>
+                    <li>
+                        <!--Procesos automáticos-->
+                        <button type="button" onclick="toggleDiv(this, 'auto', 'Procesos automáticos')" data-original-text="Procesos automáticos">Procesos automáticos</button>
+                        <div id="auto" class="contenido" style="display: none;">
+                            <p>Añadir el código de procesos automáticos</p>
+                        </div>
+                        
+                    </li>
+                    <li>
+                        <!--Procesos manuales-->
+                        <div id="manual">
+                            <button type="button" onclick="toggleDiv(this, 'manualContent', 'Procesos manuales')" data-original-text="Procesos manuales">Procesos manuales</button>
+                            <div id="manualContent" class="contenido" style="display: none;">
+                                <ol>
+                                    <li>
+                                        <!--Opciones del equipo-->
+                                        <div class="equipo">
+                                            <button type="button" onclick="toggleDiv(this, 'equipoContent', 'Equipos')" data-original-text="Equipos">Equipos</button>
+                                            <div id="equipoContent" class="contenido" style="display: none;">
+                                                <ol>
+                                                    <li>
+                                                        <div class="nombre">
+                                                            <button type="button" onclick="toggleDiv(this, 'nombreContent', 'Cambiar el nombre del equipo')" data-original-text="Cambiar el nombre del equipo">Cambiar el nombre del equipo</button>
+                                                            <div id="nombreContent" class="contenido" style="display: none;">
+                                                                <form action="procesos.php" method="get">
+                                                                    <input type="text" name="nombre" id="npc" placeholder="Name PC" required>
+                                                                    <!--Envío del formulario final-->
+                                                                    <input type="submit" value="Cambiar">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li> 
+                                                    <li>
+                                                        <div class="ip">
+                                                            <button type="button" onclick="toggleDiv(this, 'ipContent', 'Configurar IP del equipo')" data-original-text="Configurar IP del equipo">Configurar IP del equipo</button>
+                                                            <div id="ipContent" class="contenido" style="display: none;">
+                                                                <form action="procesos.php" method="get">
+                                                                    <input type="text" name="nombre" id="ip" placeholder="IP" required>
+                                                                    <input type="text" name="nombre" id="mask" placeholder="Mask" required>
+                                                                    <input type="text" name="nombre" id="gtw" placeholder="Gateway" required>
+                                                                    <!--Envío del formulario final-->
+                                                                    <input type="submit" value="Cambiar IP">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </li> 
+                                    <li> 
+                                        <!--Opciones de dominio-->
+                                        <div class="dominios">
+                                            <button type="button" onclick="toggleDiv(this, 'dominiosContent', 'Opciones de dominios')" data-original-text="Opciones de dominios">Opciones de dominios</button>
+                                            <div id="dominiosContent" class="contenido" style="display: none;">
+                                                <ol>
+                                                    <li>
+                                                        <div class="prom">
+                                                            <button type="button" onclick="toggleDiv(this, 'promContent', 'Promover un dominio')" data-original-text="Promover un dominio">Promover un dominio</button>
+                                                            <div id="promContent" class="contenido" style="display: none;">
+                                                                <ol>
+                                                                    <li>
+                                                                        <div class="primario">
+                                                                            <button type="button" onclick="toggleDiv(this, 'primarioContent', 'Dominio primario')" data-original-text="Dominio primario">Dominio primario</button>
+                                                                            <div id="primarioContent" class="contenido" style="display: none;">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <input type="text" name="ndom" id="ndom" placeholder="User name" required>
+                                                                                    <!--Envío del formulario final-->
+                                                                                    <input type="submit" value="Crear">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li> 
+                                                                    <li>
+                                                                        <div class="secundario">
+                                                                            <button type="button" onclick="toggleDiv(this, 'secundarioContent', 'Dominio secundario')" data-original-text="Dominio secundario">Dominio secundario</button>
+                                                                            <div id="secundarioContent" class="contenido" style="display: none;">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <input type="text" name="nombre" id="nomc" placeholder="User name" required>
+                                                                                    <!--Envío del formulario final-->
+                                                                                    <input type="submit" value="Crear">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </ol>
+                                                            </div>
+                                                        </div>        
+                                                    </li> 
+                                                    <li>
+                                                        <div class="degr">
+                                                            <button type="button" onclick="toggleDiv(this, 'degrContent', 'Degradar un dominio')" data-original-text="Degradar un dominio">Degradar un dominio</button>
+                                                            <div id="degrContent" class="contenido" style="display: none;">
+                                                                <form action="procesos.php" method="get">
+                                                                    <input type="text" name="nombre" id="ndom" placeholder="User name" required>
+                                                                    <!--Envío del formulario final-->
+                                                                    <input type="submit" value="Degradar">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </li> 
+                                    <li>
+                                        <!--Opciones para la creacion de Usuarios, Grupos y Unidades Organizativas-->
+                                        <ol>
+                                            <div class="uguo">
+                                                <button type="button" data-original-text="Usuarios, Grupos y Unidades O." onclick="toggleVisibility(this, 'ugDiv')">Usuarios, Grupos y Unidades O.</button>
+                                                <div id="ugDiv" class="hidden">
+                                                    <li>
+                                                        <ol>
+                                                            <!-- Opciones para los usuarios -->
+                                                            <div class="usu">
+                                                                <button type="button" data-original-text="Usuarios" onclick="toggleVisibility(this, 'usuDiv')">Usuarios</button>
+                                                                <div id="usuDiv" class="hidden">
+                                                                    <li>
+                                                                        <!-- Opciones para la creación de usuarios -->
+                                                                        <div class="cu">
+                                                                            <button type="button" data-original-text="Crear usuarios" onclick="toggleVisibility(this, 'crearUsuariosDiv')">Crear usuarios</button>
+                                                                            <form action="procesos.php" method="get" onsubmit="return true;">
+                                                                                <div id="crearUsuariosDiv" class="hidden">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre del usuario</th><td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Contraseña</th><td><input type="password" name="clave" id="clave" placeholder="Contraseña del usuario" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th><td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th><td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión</th><td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>¿El usuario podrá cambiar la contraseña?:</th><td>Sí<input style="width: 10%;" type="radio" name="pcc" required value="si">No<input style="width: 10%;" type="radio" name="pcc" required value="no"></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>
+                                                                                                Tipo de usuario</th><td><select  style="width: 100%;" name="tipus" id="tipus" required>
+                                                                                                <option value="stan">estándar</option>
+                                                                                                <option value="admin">administrador</option>
+                                                                                            </select></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Activarlo inmediatamente</th><td>Sí<input style="width: 10%; background-color: aliceblue;" type="radio" value="si" name="aimed" required>
+                                                                                                No<input style="width: 10%; background-color: aliceblue;" type="radio" value="no" name="aimed"></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Crear">
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <!-- Opciones para borrar usuarios -->
+                                                                        <div class="bc">
+                                                                            <button type="button" data-original-text="Borrar usuarios" onclick="toggleVisibility(this, 'borrarUsuariosDiv')">Borrar usuarios</button>
+                                                                            <div id="borrarUsuariosDiv" class="hidden">
+                                                                                <form action="procesos.php" method="get" onsubmit="return true;">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre del usuario</th><td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th><td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th><td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión</th><td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Borrar">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <!-- Opciones para la administración de usuarios -->
+                                                                        <div class="au">
+                                                                            <button type="button" data-original-text="Admin Usuarios" onclick="toggleVisibility(this, 'adminUsuariosDiv')">Admin Usuarios</button>
+                                                                            <div id="adminUsuariosDiv" class="hidden">
+                                                                                <form action="procesos.php" method="get" onsubmit="return true;">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre del usuario</th><td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th><td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th><td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión</th><td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th colspan="2" style="text-align: center;">
+                                                                                                <select name="hdcm" id="hdcm" required onchange="mostrarFormulario()">
+                                                                                                    <option value="agrp">Añadir a un grupo</option>
+                                                                                                    <option value="had">Designar como administrador</option>
+                                                                                                    <option value="dca">Descartar como administrador</option>
+                                                                                                </select>
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    
+                                                                                    <!-- Formulario del grupo (visible al principio) -->
+                                                                                    <table id="formGrupo">
+                                                                                        <tr>
+                                                                                            <th>Nombre del grupo</th><td><input type="text" name="ngrp" id="ngrp" placeholder="Nombre del Grupo" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th><td><input type="text" name="unorGrupo" id="unorGrupo" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th><td><input type="text" name="ndomGrupo" id="ndomGrupo" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión del dominio</th><td><input type="text" name="exdomGrupo" id="exdomGrupo" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    
+                                                                                    <script>
+                                                                                        function mostrarFormulario() {
+                                                                                            const seleccion = document.getElementById("hdcm").value;
+                                                                                            const formGrupo = document.getElementById("formGrupo");
+                                                                                    
+                                                                                            if (seleccion === "agrp") {
+                                                                                                // Mostrar el formulario y hacer los campos obligatorios
+                                                                                                formGrupo.style.display = "table";
+                                                                                                document.getElementById("ngrp").setAttribute("required", "true");
+                                                                                                document.getElementById("unorGrupo").setAttribute("required", "true");
+                                                                                                document.getElementById("ndomGrupo").setAttribute("required", "true");
+                                                                                                document.getElementById("exdomGrupo").setAttribute("required", "true");
+                                                                                            } else {
+                                                                                                // Ocultar el formulario y remover obligatoriedad de los campos
+                                                                                                formGrupo.style.display = "none";
+                                                                                                document.getElementById("ngrp").removeAttribute("required");
+                                                                                                document.getElementById("unorGrupo").removeAttribute("required");
+                                                                                                document.getElementById("ndomGrupo").removeAttribute("required");
+                                                                                                document.getElementById("exdomGrupo").removeAttribute("required");
+                                                                                            }
+                                                                                        }
+                                                                                    
+                                                                                        // Ejecutar la función una vez al cargar la página para establecer el comportamiento correcto
+                                                                                        window.onload = function() {
+                                                                                            mostrarFormulario();  // Muestra el formulario correctamente según la opción inicial
+                                                                                        };
+                                                                                    </script>
+                                                                                    <input type="submit" value="Enviar">                                                        
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </div>
+                                                            </div>
+                                                        </ol>                                                        
+                                                    </li>
+                                                    <!-- Opciones para los grupos -->
+                                                    <li>
+                                                        <ol>
+                                                            <div class="grp">
+                                                                <button type="button" data-original-text="Grupos" onclick="toggleVisibility(this, 'gruposDiv')">Grupos</button>
+                                                                <div id="gruposDiv" class="hidden">
+                                                                    <li>
+                                                                        <!-- Opciones para la creación de grupos -->
+                                                                        <div class="cg">
+                                                                            <button type="button" data-original-text="Crear grupos" onclick="toggleVisibility(this, 'crearGruposDiv')">Crear grupos</button>
+                                                                            <div id="crearGruposDiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre de Grupo</th> <td><input type="text" name="usun" id="ngrp" placeholder="Nombre del Grupo" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th> <td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th> <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión del dominio</th> <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>
+                                                                                                Ámbito
+                                                                                            </th> 
+                                                                                            <td>
+                                                                                                <select name="tdg" id="tdg">
+                                                                                                    <option value="L">Local</option>
+                                                                                                    <option value="G">Global</option>
+                                                                                                    <option value="U">Universal</option> 
+                                                                                                </select>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Grupo:</th> 
+                                                                                            <td>
+                                                                                                seguro<input type="radio" name="gsec" value="sec" style="width: 10%;">no seguro<input type="radio" name="gsec" value="nsec" style="width: 10%;"> 
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Crear">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <!-- Opciones para borrar grupos -->
+                                                                        <div class="bg">
+                                                                            <button type="button" data-original-text="Borrar grupos" onclick="toggleVisibility(this, 'borrarGruposDiv')">Borrar grupos</button>
+                                                                            <div id="borrarGruposDiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre de Grupo</th> <td><input type="text" name="usun" id="ngrp" placeholder="Nombre del Grupo" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th> <td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th> <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión del dominio</th> <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Borrar">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <!-- Opciones para la administración de grupos -->
+                                                                        <div class="ag">
+                                                                            <button type="button" data-original-text="Administrar grupos" onclick="toggleVisibility(this, 'adminGruposDiv')">Administrar grupos</button>
+                                                                            <div id="adminGruposDiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <input type="text" name="usun" id="ngrp" placeholder="Nombre del Grupo" required>
+                                                                                    <input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required>
+                                                                                    <input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required>
+                                                                                    <input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required>
+                                                                                    <input type="submit" value="enviar">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </div>
+                                                            </div>
+                                                        </ol>
+                                                    </li>
+                                                    <!-- Opciones para las Unidades Organizativas -->
+                                                    <li>
+                                                        <ol>
+                                                            <div class="uo">
+                                                                <button type="button" data-original-text="Unidad Organizativa" onclick="toggleVisibility(this, 'uoDiv')">Unidad Organizativa</button>
+                                                                <div id="uoDiv" class="hidden">
+                                                                    <li>
+                                                                        <div class="cuo">
+                                                                            <button type="button" data-original-text="Crear unidades organizativas" onclick="toggleVisibility(this, 'crearUODiv')">Crear unidades organizativas</button>
+                                                                            <div id="crearUODiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre de la Unidad O</th> <td><input type="text" name="nuo" id="nuo" placeholder="Nombre de la Unidad O" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th> <td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th> <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión del dominio</th> <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Crear">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="buo">
+                                                                            <button type="button" data-original-text="Borrar unidades organizativas" onclick="toggleVisibility(this, 'borrarUODiv')">Borrar unidades organizativas</button>
+                                                                            <div id="borrarUODiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Nombre de la Unidad O</th> <td><input type="text" name="nuo" id="nuo" placeholder="Nombre de la Unidad O" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Unidad Organizativa</th> <td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Nombre del dominio</th> <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Extensión del dominio</th> <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                    <input type="submit" value="Borrar">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                    <li>
+                                                                        <div class="auo">
+                                                                            <button type="button" data-original-text="Administrar unidades organizativas" onclick="toggleVisibility(this, 'adminUODiv')">Administrar unidades organizativas</button>
+                                                                            <div id="adminUODiv" class="hidden">
+                                                                                <form action="procesos.php" method="get">
+                                                                                    <input type="text" name="nuo" id="nuo" placeholder="Nombre de la Unidad O" required>
+                                                                                    <input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required>
+                                                                                    <input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required>
+                                                                                    <input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required>
+                                                                                    <input type="submit" value="Crear">
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                </div>
+                                                            </div>
+                                                        </ol>
+                                                    </li>
+                                                </div>
+                                            </div>
+                                        </ol>
+                                    </li>
+                                    <li> 
+                                        <!--Opciones para carpetas-->
+                                        <div class="carpetas">
+                                            <button type="button" onclick="toggleDiv(this, 'carpetasContent', 'Carpetas')" data-original-text="Carpetas">Carpetas</button>
+
+                                            <div id="carpetasContent" class="contenido" style="display: none;">
+                                                <ol>
+                                                    <li>
+                                                        <div class="cc">
+                                                            <button type="button" onclick="toggleDiv(this, 'ccContent', 'Crear carpetas personalizadas')" data-original-text="Crear carpetas personalizadas">Crear carpetas personalizadas</button>
+                                                            <div id="ccContent" class="contenido" style="display: none;">
+                                                                <form action="procesos.php" method="get">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Nombre de la carpeta</th> <td><input type="text" name="nombre" id="ccarp" placeholder="User name" required></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <input type="submit" value="Crear">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    <li>
+                                                        <div class="bc">
+                                                            <button type="button" onclick="toggleDiv(this, 'bcContent', 'Borrar carpetas')" data-original-text="Borrar carpetas">Borrar carpetas</button>
+                                                            <div id="bcContent" class="contenido" style="display: none;">
+                                                                <form action="procesos.php" method="get">
+                                                                    <table>
+                                                                        <tr>
+                                                                            <th>Nombre de la carpeta</th> <td><input type="text" name="nombre" id="ccarp" placeholder="User name" required></td>
+                                                                        </tr>
+                                                                    </table>
+                                                                    <input type="submit" value="Borrar">
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li> 
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </li>
+                </ol>
+            </form>
+        </div>
+    </main>
+    <aside></aside>
+    <footer></footer>
+</body>
+</html>
