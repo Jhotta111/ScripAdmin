@@ -130,21 +130,30 @@ if ($equipo == "") {
         $equipoOK = true;
     }
 
-// $ip $mascara $gateway $primario $secudario $dominio $extension $claveDom $reiniciar $usuario $claveUS $cambio $tiposA $activar $admin $grupo $tiposG $seguro $unidad $crear $borrar
-
 
     //Validacion de datos de la red
-    if ($equipo == "") {
+    if ($ip == "") {
         print "<p style=\"color: red;\">Ladirección IP del equipo no puede estacío</p>\n";
-    } elseif (strlen($equipo) > 15) {
-        print "<p style=\"color: red;\">El texto tiene más de 15 caracteres</p>\n";
-        } elseif (preg_match('/\s/', $equipo)) {
-            print "<p style=\"color: red;\">El nombre del equipo no puede contener espacios</p>\n";
-        } elseif (!preg_match('/\d/', $equipo)) {
+    } elseif (strlen($ip) < 4 && strlen($ip) > 32) {
+        print "<p style=\"color: red;\">La IP introducida no está dentro del rango</p>\n";
+        } elseif (preg_match('/\s/', $ip)) {
+            print "<p style=\"color: red;\">La IP del equipo no puede contener espacios</p>\n";
+        } elseif (!preg_match('/\d/', $ip)) {
             print "<p style=\"color: red;\">El nombre del equipo no puede contener números</p>\n";
-        } else {
-            $equipoOK = true;
+        } elseif (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+        return "El texto no es una dirección IPv4 válida.";
+    }elseif (!filter_var($texto, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+        return "El texto no es una dirección IPv6 válida.";
+    } else {
+            $ipOK = true;
         }
+    
+
+// Ejemplo de uso
+$texto = "192.168.1.1"; // Prueba con una dirección IP válida o inválida
+$resultado = validarIP($texto);
+echo $resultado;
+
 
 /*
 $nombre = recoge("");

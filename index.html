@@ -196,10 +196,16 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Contraseña del dominio:</th>
-                                                                                        <td><input type="text" name="cdom" id="cdom" placeholder="Contraseña del dominio" required></td>
+                                                                                        <td><input type="password" name="cdom" id="cdom" placeholder="Contraseña del dominio" required></td>
                                                                                     </tr>
-
-
+                                                                                    <tr>
+                                                                                        <th>Usuario administrador</th>
+                                                                                        <td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Contraseña del usuario</th>
+                                                                                        <td><input type="password" name="clave" id="clave" placeholder="Contraseña del usuario" required></td>
+                                                                                    </tr>
                                                                                     <tr>
                                                                                         <th>
                                                                                             <select name="rebot" id="rebot" required>
@@ -209,44 +215,56 @@
                                                                                         </th>
                                                                                         <td>el sistema al finalizar</td>
                                                                                     </tr>
-                                                                                    <tr>
-                                                                                        <th>Extensión</th>
-                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th>Extensión</th>
-                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th>Extensión</th>
-                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
-                                                                                    </tr>
-                                                                                    <tr>
-                                                                                        <th>Extensión</th>
-                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
-                                                                                    </tr>
                                                                                 </table>
                                                                                 <!--Envío del formulario final-->
-                                                                                <input type="submit" value="Crear">
+                                                                                <input type="submit" value="Promover">
                                                                             </form>
                                                                         </div>
                                                                     </div>
                                                                 </li>
                                                                 <li>
                                                                     <div class="secundario">
-                                                                        <button type="button"
-                                                                                onclick="toggleDiv(this, 'secundarioContent', 'Dominio secundario')"
-                                                                                data-original-text="Dominio secundario">
+                                                                        <button type="button" onclick="toggleDiv(this, 'secundarioContent', 'Dominio secundario')" data-original-text="Dominio secundario">
                                                                             Dominio secundario
                                                                         </button>
-                                                                        <div id="secundarioContent" class="contenido"
-                                                                             style="display: none;">
+                                                                        <div id="secundarioContent" class="contenido" style="display: none;">
                                                                             <form action="procesos.php" method="get">
-                                                                                <input type="text" name="nombre"
-                                                                                       id="nomc" placeholder="User name"
-                                                                                       required>
-                                                                                <!--Envío del formulario final-->
-                                                                                <input type="submit" value="Crear">
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <th>Nombre del dominio primario</th>
+                                                                                        <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio primario" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Nombre del dominio</th>
+                                                                                        <td><input type="text" name="ndomsec" id="ndomsec" placeholder="Nombre del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Contraseña del dominio:</th>
+                                                                                        <td><input type="password" name="cdom" id="cdom" placeholder="Contraseña del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Usuario administrador</th>
+                                                                                        <td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Contraseña del usuario</th>
+                                                                                        <td><input type="password" name="clave" id="clave" placeholder="Contraseña del usuario" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            <select name="rebot" id="rebot" required>
+                                                                                                <option value="re">Reiniciar</option>
+                                                                                                <option value="nore">No reiniciar</option>
+                                                                                            </select>
+                                                                                        </th>
+                                                                                        <td>el sistema al finalizar</td>
+                                                                                    </tr>
+                                                                                </table>
+                                                                                <input type="submit" value="Promover">
                                                                             </form>
                                                                         </div>
                                                                     </div>
@@ -257,10 +275,8 @@
                                                 </li>
                                                 <li>
                                                     <div class="degr">
-                                                        <button type="button"
-                                                                onclick="toggleDiv(this, 'degrContent', 'Degradar un dominio')"
-                                                                data-original-text="Degradar un dominio">Degradar un
-                                                            dominio
+                                                        <button type="button" onclick="toggleDiv(this, 'degrContent', 'Degradar un dominio')" data-original-text="Degradar un dominio">
+                                                            Degradar un dominio
                                                         </button>
                                                         <div id="degrContent" class="contenido" style="display: none;">
                                                             <form action="procesos.php" method="get">
@@ -289,8 +305,8 @@
                                                     <ol>
                                                         <!-- Opciones para los usuarios -->
                                                         <div class="usu">
-                                                            <button type="button" data-original-text="Usuarios"
-                                                                    onclick="toggleVisibility(this, 'usuDiv')">Usuarios
+                                                            <button type="button" data-original-text="Usuarios" onclick="toggleVisibility(this, 'usuDiv')">
+                                                                Usuarios
                                                             </button>
                                                             <div id="usuDiv" class="hidden">
                                                                 <li>
@@ -307,25 +323,15 @@
                                                                                 <table>
                                                                                     <tr>
                                                                                         <th>Nombre del usuario</th>
-                                                                                        <td><input type="text"
-                                                                                                   name="usun" id="usun"
-                                                                                                   placeholder="Nombre del usuario"
-                                                                                                   required></td>
+                                                                                        <td><input type="text" name="usun" id="usun" placeholder="Nombre del usuario" required></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Contraseña</th>
-                                                                                        <td><input type="password"
-                                                                                                   name="clave"
-                                                                                                   id="clave"
-                                                                                                   placeholder="Contraseña del usuario"
-                                                                                                   required></td>
+                                                                                        <td><input type="password" name="clave" id="clave" placeholder="Contraseña del usuario" required></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Unidad Organizativa</th>
-                                                                                        <td><input type="text"
-                                                                                                   name="unor" id="unor"
-                                                                                                   placeholder="Unidad Organizativa"
-                                                                                                   required></td>
+                                                                                        <td><input type="text" name="unor" id="unor" placeholder="Unidad Organizativa" required></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Nombre del dominio</th>
