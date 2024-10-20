@@ -128,8 +128,7 @@
                                                         <div id="nombreContent" class="contenido"
                                                              style="display: none;">
                                                             <form action="procesos.php" method="get">
-                                                                <input type="text" name="nombre" id="npc"
-                                                                       placeholder="Name PC" required>
+                                                                <input type="text" name="nombre" id="npc" placeholder="Name PC" required>
                                                                 <!--Envío del formulario final-->
                                                                 <input type="submit" value="Cambiar">
                                                             </form>
@@ -138,19 +137,16 @@
                                                 </li>
                                                 <li>
                                                     <div class="ip">
-                                                        <button type="button"
-                                                                onclick="toggleDiv(this, 'ipContent', 'Configurar IP del equipo')"
-                                                                data-original-text="Configurar IP del equipo">Configurar
-                                                            IP del equipo
+                                                        <button type="button" onclick="toggleDiv(this, 'ipContent', 'Configurar IP del equipo')" data-original-text="Configurar IP del equipo">
+                                                                Configurar IP del equipo
                                                         </button>
                                                         <div id="ipContent" class="contenido" style="display: none;">
                                                             <form action="procesos.php" method="get">
-                                                                <input type="text" name="nombre" id="ip"
-                                                                       placeholder="IP" required>
-                                                                <input type="text" name="nombre" id="mask"
-                                                                       placeholder="Mask" required>
-                                                                <input type="text" name="nombre" id="gtw"
-                                                                       placeholder="Gateway" required>
+                                                                <input type="text" name="ip" id="ip" placeholder="IP" required>
+                                                                <input type="text" name="mask" id="mask" placeholder="Mask" required>
+                                                                <input type="text" name="gtw" id="gtw" placeholder="Gateway" required>
+                                                                <input type="text" name="dns1" id="dns1" placeholder="DNS primario" required>
+                                                                <input type="text" name="dns2" id="dns2" placeholder="DNS secundario" required>
                                                                 <!--Envío del formulario final-->
                                                                 <input type="submit" value="Cambiar IP">
                                                             </form>
@@ -189,8 +185,47 @@
                                                                         <div id="primarioContent" class="contenido"
                                                                              style="display: none;">
                                                                             <form action="procesos.php" method="get">
-                                                                                <input type="text" name="ndom" id="ndom"
-                                                                                       placeholder="User name" required>
+                                                                                <table>
+                                                                                    <tr>
+                                                                                        <th>Nombre del dominio</th>
+                                                                                        <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Contraseña del dominio:</th>
+                                                                                        <td><input type="text" name="cdom" id="cdom" placeholder="Contraseña del dominio" required></td>
+                                                                                    </tr>
+
+
+                                                                                    <tr>
+                                                                                        <th>
+                                                                                            <select name="rebot" id="rebot" required>
+                                                                                                <option value="re">Reiniciar</option>
+                                                                                                <option value="nore">No reiniciar</option>
+                                                                                            </select>
+                                                                                        </th>
+                                                                                        <td>el sistema al finalizar</td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                    <tr>
+                                                                                        <th>Extensión</th>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
+                                                                                    </tr>
+                                                                                </table>
                                                                                 <!--Envío del formulario final-->
                                                                                 <input type="submit" value="Crear">
                                                                             </form>
@@ -294,30 +329,15 @@
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Nombre del dominio</th>
-                                                                                        <td><input type="text"
-                                                                                                   name="ndom" id="ndom"
-                                                                                                   placeholder="Nombre del dominio"
-                                                                                                   required></td>
+                                                                                        <td><input type="text" name="ndom" id="ndom" placeholder="Nombre del dominio" required></td>
                                                                                     </tr>
                                                                                     <tr>
                                                                                         <th>Extensión</th>
-                                                                                        <td><input type="text"
-                                                                                                   name="exdom"
-                                                                                                   id="exdom"
-                                                                                                   placeholder="Extensión del dominio"
-                                                                                                   required></td>
+                                                                                        <td><input type="text" name="exdom" id="exdom" placeholder="Extensión del dominio" required></td>
                                                                                     </tr>
                                                                                     <tr>
-                                                                                        <th>¿El usuario podrá cambiar la
-                                                                                            contraseña?:
-                                                                                        </th>
-                                                                                        <td>Sí<input style="width: 10%;"
-                                                                                                     type="radio"
-                                                                                                     name="pcc" required
-                                                                                                     value="si">No<input
-                                                                                                style="width: 10%;"
-                                                                                                type="radio" name="pcc"
-                                                                                                required value="no">
+                                                                                        <th>¿El usuario podrá cambiar la contraseña?: </th>
+                                                                                        <td>Sí<input style="width: 10%;"  type="radio" name="pcc" required value="si">No<input style="width: 10%;" type="radio" name="pcc" required value="no">
                                                                                         </td>
                                                                                     </tr>
                                                                                     <tr>
@@ -721,7 +741,7 @@
                                                                                     <tr>
                                                                                         <th>Nombre de la Unidad O</th>
                                                                                         <td><input type="text"
-                                                                                                   name="nuo" id="nuo"
+                                                                                                   name="unor" id="unor"
                                                                                                    placeholder="Nombre de la Unidad O"
                                                                                                    required></td>
                                                                                     </tr>
@@ -766,7 +786,7 @@
                                                                                     <tr>
                                                                                         <th>Nombre de la Unidad O</th>
                                                                                         <td><input type="text"
-                                                                                                   name="nuo" id="nuo"
+                                                                                                   name="unor" id="unor"
                                                                                                    placeholder="Nombre de la Unidad O"
                                                                                                    required></td>
                                                                                     </tr>
@@ -807,7 +827,7 @@
                                                                         </button>
                                                                         <div id="adminUODiv" class="hidden">
                                                                             <form action="procesos.php" method="get">
-                                                                                <input type="text" name="nuo" id="nuo"
+                                                                                <input type="text" name="unor" id="unor"
                                                                                        placeholder="Nombre de la Unidad O"
                                                                                        required>
                                                                                 <input type="text" name="unor" id="unor"
