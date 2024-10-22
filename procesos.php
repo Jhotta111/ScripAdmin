@@ -142,17 +142,122 @@ if ($equipo == "") {
             print "<p style=\"color: red;\">El nombre del equipo no puede contener números</p>\n";
         } elseif (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
         return "El texto no es una dirección IPv4 válida.";
-    }elseif (!filter_var($texto, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+    }elseif (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
         return "El texto no es una dirección IPv6 válida.";
     } else {
             $ipOK = true;
         }
+
+
+
+        //Validacion de datos de la mascara
+        if ($mascara == "") {
+            print "<p style=\"color: red;\">Ladirección mascara del equipo no puede estacío</p>\n";
+        } elseif (strlen($mascara) < 4 && strlen($mascara) > 32) {
+            print "<p style=\"color: red;\">La mascara introducida no está dentro del rango</p>\n";
+            } elseif (preg_match('/\s/', $mascara)) {
+                print "<p style=\"color: red;\">La IP del equipo no puede contener espacios</p>\n";
+            } elseif (!preg_match('/\d/', $mascara)) {
+                print "<p style=\"color: red;\">La mascara del equipo no puede contener números</p>\n";
+            } elseif (!filter_var($mascara, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return "El texto no es una mascara IPv4 válida.";
+        }elseif (!filter_var($mascara, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return "El texto no es una mascara IPv6 válida.";
+        } else {
+                $mascaraOK = true;
+            }
+    
+
+//Validacion de datos de la gateway
+        if ($ip == "") {
+            print "<p style=\"color: red;\">Ladirección IP del equipo no puede estacío</p>\n";
+        } elseif (strlen($gateway) < 4 && strlen($gateway) > 32) {
+            print "<p style=\"color: red;\">La gateway introducida no está dentro del rango</p>\n";
+            } elseif (preg_match('/\s/', $gateway)) {
+                print "<p style=\"color: red;\">La gateway del equipo no puede contener espacios</p>\n";
+            } elseif (!preg_match('/\d/', $gateway)) {
+                print "<p style=\"color: red;\">El gateway del equipo no puede contener números</p>\n";
+            } elseif (!filter_var($gateway, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return "El texto no es una gateway IPv4 válida.";
+        }elseif (!filter_var($gateway, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return "El texto no es una gateway IPv6 válida.";
+        } else {
+                $gatewayOK = true;
+            }
+    
+
+//Validacion de datos de la DNS 1
+        if ($primario == "") {
+            print "<p style=\"color: red;\">Ladirección IP del equipo no puede estacío</p>\n";
+        } elseif (strlen($primario) < 4 && strlen($primario) > 32) {
+            print "<p style=\"color: red;\">La IP introducida no está dentro del rango</p>\n";
+            } elseif (preg_match('/\s/', $primario)) {
+                print "<p style=\"color: red;\">La primario del equipo no puede contener espacios</p>\n";
+            } elseif (!preg_match('/\d/', $primario)) {
+                print "<p style=\"color: red;\">El primario del equipo no puede contener números</p>\n";
+            } elseif (!filter_var($primario, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return "El texto no es una dirección IPv4 válida.";
+        }elseif (!filter_var($primario, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return "El texto no es una primario IPv6 válida.";
+        } else {
+                $primarioOK = true;
+            }
+    
+
+ //Validacion de datos de la DNS 2
+        if ($secudario == "") {
+            print "<p style=\"color: red;\">El DNS 2 del equipo no puede estacío</p>\n";
+        } elseif (strlen($secudario) < 4 && strlen($secudario) > 32) {
+            print "<p style=\"color: red;\">El DNS 2 introducida no está dentro del rango</p>\n";
+            } elseif (preg_match('/\s/', $secudario)) {
+                print "<p style=\"color: red;\">El DNS 2 del equipo no puede contener espacios</p>\n";
+            } elseif (!preg_match('/\d/', $secudario)) {
+                print "<p style=\"color: red;\">El DNS 2 del equipo no puede contener números</p>\n";
+            } elseif (!filter_var($secudario, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return "El DNS 2 no es una dirección válida.";
+        }elseif (!filter_var($secudario, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) {
+            return "El texto no es una DNS 2 seundario válida.";
+        } else {
+                $secudarioOK = true;
+            }
     
 
 // Ejemplo de uso
 $texto = "192.168.1.1"; // Prueba con una dirección IP válida o inválida
 $resultado = validarIP($texto);
 echo $resultado;
+
+
+
+//$dominio $extension $claveDom $reiniciar $usuario $claveUS $cambio $tiposA $activar $admin $grupo $tiposG $seguro $unidad $crear $borrar
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /*
