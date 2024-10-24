@@ -229,7 +229,56 @@ echo $resultado;
 
 
 
-//$dominio $extension $claveDom $reiniciar $usuario $claveUS $cambio $tiposA $activar $admin $grupo $tiposG $seguro $unidad $crear $borrar
+
+
+
+
+//Validacion de datos del dominio
+if ($dominio == "") {
+    print "<p style=\"color: red;\">Introduce el nombre del dominio</p>\n";
+} elseif (strlen($dominio) > 15) {
+    print "<p style=\"color: red;\">El texto tiene más de 15 caracteres</p>\n";
+    } elseif (preg_match('/\s/', $dominio)) {
+        print "<p style=\"color: red;\">El nombre del dominio no puede contener espacios</p>\n";
+    } elseif (!preg_match('/\d/', $dominio)) {
+        print "<p style=\"color: red;\">El nombre del dominio no puede contener números</p>\n";
+    } else {
+        $dominioOK = true;
+    }
+
+
+
+//Validacion de datos de la extension
+if ($extension == "") {
+    print "<p style=\"color: red;\">Introduce el nombre del extension</p>\n";
+} elseif (strlen($extension) > 15) {
+    print "<p style=\"color: red;\">El texto tiene más de 15 caracteres</p>\n";
+    } elseif (preg_match('/\s/', $extension)) {
+        print "<p style=\"color: red;\">El nombre del extension no puede contener espacios</p>\n";
+    } elseif (!preg_match('/\d/', $extension)) {
+        print "<p style=\"color: red;\">El nombre del extension no puede contener números</p>\n";
+    } else {
+        $extensionOK = true;
+    }
+
+
+
+    //Validacion de datos de la clave Dominio
+if ($claveDom == "") {
+    print "<p style=\"color: red;\">Introduce el nombre del clave Dominio</p>\n";
+} elseif (strlen($claveDom) > 15) {
+    print "<p style=\"color: red;\">El texto tiene más de 15 caracteres</p>\n";
+    } elseif (preg_match('/\s/', $claveDom)) {
+        print "<p style=\"color: red;\">El nombre del clave Dominio no puede contener espacios</p>\n";
+    } elseif (!preg_match('/\d/', $claveDom)) {
+        print "<p style=\"color: red;\">El nombre del clave Dominio no puede contener números</p>\n";
+    } else {
+        $claveDomOK = true;
+    }
+
+
+    
+//$usuario $claveUS $cambio $tiposA $activar $admin $grupo $tiposG $seguro $unidad $crear $borrar
 
 
 
